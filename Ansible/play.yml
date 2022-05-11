@@ -1,0 +1,22 @@
+---
+- name: Nginx
+  hosts: ycloud
+  gather_facts: true
+  become: true
+  become_method: sudo
+  become_user: root
+  vars:
+    nginx_user: www-data
+  roles:
+    - { role: nginx, tags: main }
+    
+- name: PostgreSQL
+  hosts: ycloud
+  gather_facts: true
+  become: true
+  become_method: sudo
+  become_user: root
+  vars:
+    allow_world_readable_tmpfiles: true
+  roles:
+    - { role: postgres, tags: main }

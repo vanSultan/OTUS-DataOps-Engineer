@@ -1,0 +1,5 @@
+[ycloud]
+otus-vm ansible_host=51.250.4.138 ansible_port=22 virtual_domain=domain1.sultan.ru
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

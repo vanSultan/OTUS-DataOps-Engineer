@@ -1,0 +1,34 @@
+---
+- name: Install Nginx Web Server
+  apt:
+    name: nginx
+    state: latest
+  when:
+    ansible_os_family == "Debian"
+  notify: 
+    - nginx systemd
+  tags: [main, install]
+
+- name: Replace nginx.conf
+  template:
+    src: templates/nginx.conf
+    dest: /etc/nginx/nginx.conf
+  tags: [main, install]
+
+- name: Create home directory for www
+  file:
+    path: /var/www/{{ virtual_domain }}
+    state: directory
+  tags: [main, domain]
+
+- name: Add virtual domain in NGINX
+  vars:
+    fastcgi_pass_path: /run/php/php7.2-fpm.sock
+  template:
+    src: templates/nginx_vhosts.conf
+    dest: /etc/nginx/sites-enabled/{{ virtual_domain }}.conf
+  when:
+    ansible_os_family == "Debian"
+  notify:
+    - nginx restart
+  tags: [main, domain]

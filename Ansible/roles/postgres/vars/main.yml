@@ -1,0 +1,4 @@
+---
+postgres_root_user: root
+db_user: sultan
+db_name: otus

@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "airflow"
+version = "0.1.0"
+description = "6. Развернуть свой Airflow"
+authors = ["Sultan <romtrash98@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+apache-airflow = "^2.3.3"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
